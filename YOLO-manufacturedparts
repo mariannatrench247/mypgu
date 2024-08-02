@@ -1,0 +1,5 @@
+#Running YOLO on my GPU with common manfuctured parts. Making it easy to incorporate A.I. into the workforce with general CNN's capable of detected manufactured objects. 
+
+
+import dataset 
+import YOLO 
