@@ -1,5 +1,164 @@
 #Running YOLO on my GPU with common manfuctured parts. Making it easy to incorporate A.I. into the workforce with general CNN's capable of detected manufactured objects. 
 
+Yes, you can use YOLO (You Only Look Once) with PyTorch. In fact, several implementations of YOLO have been developed using PyTorch, making it accessible and easy to integrate into your projects. Here's a general guide on how to use YOLO with PyTorch:
+
+Steps to Use YOLO with PyTorch
+1. Select a YOLO Version
+YOLOv5 is a popular choice for using with PyTorch. YOLOv5 is developed by the Ultralytics team and provides pre-trained models, easy-to-use interfaces, and good documentation.
+
+2. Installation
+First, clone the YOLOv5 repository and install the required dependencies.
+
+bash
+Copy code
+# Clone the YOLOv5 repository
+git clone https://github.com/ultralytics/yolov5.git
+cd yolov5
+
+# Install the dependencies
+pip install -r requirements.txt
+3. Download Pre-trained Weights
+You can download pre-trained weights for various YOLOv5 models (e.g., YOLOv5s, YOLOv5m, YOLOv5l, YOLOv5x).
+
+bash
+Copy code
+# Download pre-trained weights
+python models/download_weights.py
+Alternatively, you can use the pre-trained weights directly by specifying the model type in the code.
+
+4. Inference with YOLOv5
+Here's a simple example to perform inference using YOLOv5 with PyTorch.
+
+python
+Copy code
+import torch
+from pathlib import Path
+from PIL import Image
+import matplotlib.pyplot as plt
+
+# Load the model
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+
+# Load an image
+img = Image.open(Path('path/to/your/image.jpg'))
+
+# Perform inference
+results = model(img)
+
+# Print results
+results.print()
+
+# Show results
+results.show()
+
+# Save results
+results.save()  # save results to 'runs/detect/exp'
+5. Training a Custom YOLOv5 Model
+You can also train YOLOv5 on your own dataset.
+
+Prepare Dataset: Format your dataset in the YOLO format (images and labels). The labels should be in .txt files, with each line representing an object as class x_center y_center width height.
+
+Create YAML Configuration: Create a YAML file that describes your dataset.
+
+yaml
+Copy code
+# dataset.yaml
+train: /path/to/train/images
+val: /path/to/val/images
+
+# number of classes
+nc: 2
+
+# class names
+names: ['class1', 'class2']
+Train the Model:
+bash
+Copy code
+# Train YOLOv5 model
+python train.py --img 640 --batch 16 --epochs 50 --data dataset.yaml --weights yolov5s.pt
+Additional Resources
+YOLOv5 Documentation: Detailed documentation and tutorials are available in the YOLOv5 repository.
+Ultralytics YOLOv5 Wiki: Wiki page with examples and guides.
+By following these steps, you can effectively use YOLO with PyTorch for both inference and training on custom datasets.Yes, you can use YOLO (You Only Look Once) with PyTorch. In fact, several implementations of YOLO have been developed using PyTorch, making it accessible and easy to integrate into your projects. Here's a general guide on how to use YOLO with PyTorch:
+
+Steps to Use YOLO with PyTorch
+1. Select a YOLO Version
+YOLOv5 is a popular choice for using with PyTorch. YOLOv5 is developed by the Ultralytics team and provides pre-trained models, easy-to-use interfaces, and good documentation.
+
+2. Installation
+First, clone the YOLOv5 repository and install the required dependencies.
+
+bash
+Copy code
+# Clone the YOLOv5 repository
+git clone https://github.com/ultralytics/yolov5.git
+cd yolov5
+
+# Install the dependencies
+pip install -r requirements.txt
+3. Download Pre-trained Weights
+You can download pre-trained weights for various YOLOv5 models (e.g., YOLOv5s, YOLOv5m, YOLOv5l, YOLOv5x).
+
+bash
+Copy code
+# Download pre-trained weights
+python models/download_weights.py
+Alternatively, you can use the pre-trained weights directly by specifying the model type in the code.
+
+4. Inference with YOLOv5
+Here's a simple example to perform inference using YOLOv5 with PyTorch.
+
+python
+Copy code
+import torch
+from pathlib import Path
+from PIL import Image
+import matplotlib.pyplot as plt
+
+# Load the model
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+
+# Load an image
+img = Image.open(Path('path/to/your/image.jpg'))
+
+# Perform inference
+results = model(img)
+
+# Print results
+results.print()
+
+# Show results
+results.show()
+
+# Save results
+results.save()  # save results to 'runs/detect/exp'
+5. Training a Custom YOLOv5 Model
+You can also train YOLOv5 on your own dataset.
+
+Prepare Dataset: Format your dataset in the YOLO format (images and labels). The labels should be in .txt files, with each line representing an object as class x_center y_center width height.
+
+Create YAML Configuration: Create a YAML file that describes your dataset.
+
+yaml
+Copy code
+# dataset.yaml
+train: /path/to/train/images
+val: /path/to/val/images
+
+# number of classes
+nc: 2
+
+# class names
+names: ['class1', 'class2']
+Train the Model:
+bash
+Copy code
+# Train YOLOv5 model
+python train.py --img 640 --batch 16 --epochs 50 --data dataset.yaml --weights yolov5s.pt
+Additional Resources
+YOLOv5 Documentation: Detailed documentation and tutorials are available in the YOLOv5 repository.
+Ultralytics YOLOv5 Wiki: Wiki page with examples and guides.
+By following these steps, you can effectively use YOLO with PyTorch for both inference and training on custom datasets.
 
 import dataset 
 import YOLO 
